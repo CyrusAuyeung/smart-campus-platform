@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+coverage
+.env
+.env.*
+!.env.example
+apps/web/.next
+apps/web/node_modules
+apps/api/target
+.idea
+.vscode/
+.vscode/*.log

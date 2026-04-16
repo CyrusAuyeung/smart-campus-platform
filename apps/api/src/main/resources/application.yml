@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: campus-platform-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/campus_platform}
+    username: ${DB_USERNAME:campus}
+    password: ${DB_PASSWORD:campus}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+app:
+  booking:
+    academic-buffer-minutes: 5
+    sport-slot-minutes: 60
+    payment-timeout-minutes: 15
+  event:
+    stock-key-prefix: event:stock:
+    user-key-prefix: event:user:
+    exchange: campus.event.exchange
+    routing-key: campus.event.reserve
+  payment:
+    exchange: campus.payment.exchange
+    timeout-delay-queue: campus.booking.timeout.delay.queue
+    timeout-delay-routing-key: campus.booking.timeout.delay
+    timeout-routing-key: campus.booking.timeout
+    timeout-queue: campus.booking.timeout.queue

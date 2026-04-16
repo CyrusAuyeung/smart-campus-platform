@@ -1,0 +1,11 @@
+ALTER TABLE app_user
+ADD COLUMN IF NOT EXISTS recent_no_show_count INTEGER NOT NULL DEFAULT 0;
+
+CREATE TABLE IF NOT EXISTS credit_event (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES app_user(id),
+    event_type VARCHAR(32) NOT NULL,
+    score_delta INTEGER NOT NULL,
+    reason VARCHAR(128) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,14 @@
+{
+	"name": "unikorn-campus-platform",
+	"private": true,
+	"version": "0.1.0",
+	"packageManager": "npm@11.6.2",
+	"workspaces": [
+		"apps/web"
+	],
+	"scripts": {
+		"dev:web": "npm run dev --workspace @unikorn/web",
+		"build:web": "npm run build --workspace @unikorn/web",
+		"lint:web": "npm run lint --workspace @unikorn/web"
+	}
+}

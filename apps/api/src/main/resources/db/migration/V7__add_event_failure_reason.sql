@@ -1,0 +1,2 @@
+ALTER TABLE event_order
+ADD COLUMN IF NOT EXISTS failure_reason VARCHAR(255);
