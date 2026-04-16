@@ -20,6 +20,30 @@ const demoUsers: UserItem[] = [
     roleCode: "POSTGRADUATE",
     creditScore: 92,
     recentNoShowCount: 0
+  },
+  {
+    id: "33333333-3333-3333-3333-333333333333",
+    studentNo: "20240003",
+    displayName: "周听南",
+    roleCode: "UNDERGRADUATE",
+    creditScore: 88,
+    recentNoShowCount: 0
+  },
+  {
+    id: "44444444-4444-4444-4444-444444444444",
+    studentNo: "20240004",
+    displayName: "许照临",
+    roleCode: "POSTGRADUATE",
+    creditScore: 95,
+    recentNoShowCount: 0
+  },
+  {
+    id: "55555555-5555-5555-5555-555555555555",
+    studentNo: "20240005",
+    displayName: "顾行之",
+    roleCode: "UNDERGRADUATE",
+    creditScore: 76,
+    recentNoShowCount: 0
   }
 ];
 

@@ -88,6 +88,26 @@ class EventServiceTest {
                 .hasMessageContaining("已抢完");
     }
 
+        @Test
+        void shouldRollbackRedisReservationWhenPublishFails() {
+        UUID eventId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID();
+        when(eventRepository.findEventStock(eventId))
+            .thenReturn(Optional.of(new EventStockSnapshot(eventId, "测试活动", 20, 1, "PUBLISHED")));
+        when(eventRepository.hasExistingReservation(eventId, userId)).thenReturn(false);
+        when(stringRedisTemplate.hasKey(any())).thenReturn(true);
+        when(stringRedisTemplate.execute(any(), any(), eq(userId.toString()))).thenReturn(19L);
+        doThrow(new IllegalStateException("mq failed"))
+            .when(rabbitTemplate).convertAndSend(any(String.class), any(String.class), any(Object.class));
+
+        assertThatThrownBy(() -> eventService.reserve(new EventReserveRequest(userId, eventId)))
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("入队失败");
+
+        verify(stringRedisTemplate.opsForValue()).increment(any(String.class));
+        verify(stringRedisTemplate.opsForSet()).remove(any(String.class), eq(userId.toString()));
+        }
+
     @Test
     void shouldListPublishedEvents() {
         when(eventRepository.findPublishedEvents()).thenReturn(List.of(

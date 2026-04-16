@@ -96,7 +96,14 @@ public class EventService {
                 request.eventId(),
                 request.userId(),
                 requestId);
-        rabbitTemplate.convertAndSend(eventProperties.getExchange(), eventProperties.getRoutingKey(), command);
+
+        try {
+            rabbitTemplate.convertAndSend(eventProperties.getExchange(), eventProperties.getRoutingKey(), command);
+        } catch (RuntimeException exception) {
+            stringRedisTemplate.opsForValue().increment(stockKey(request.eventId()));
+            stringRedisTemplate.opsForSet().remove(userKey(request.eventId()), request.userId().toString());
+            throw new IllegalStateException("抢票请求入队失败，请重试", exception);
+        }
 
         return new EventReserveReceipt(requestId, "QUEUED", "抢票请求已进入队列，等待异步确认", remaining.intValue());
     }
