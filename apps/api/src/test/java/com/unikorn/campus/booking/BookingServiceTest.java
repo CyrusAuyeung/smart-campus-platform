@@ -83,7 +83,7 @@ class BookingServiceTest {
                         null,
                         List.of(),
                         List.of(),
-                        List.of()));
+                        List.of())));
         when(bookingRepository.findUserCreditSnapshot(any()))
                 .thenAnswer(invocation -> Optional.of(new UserCreditSnapshot(
                         invocation.getArgument(0),
