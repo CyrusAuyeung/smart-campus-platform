@@ -4,6 +4,7 @@ import com.unikorn.campus.booking.api.BookingReceipt;
 import com.unikorn.campus.booking.domain.AcademicBookingCommand;
 import com.unikorn.campus.booking.domain.BookingOrderSnapshot;
 import com.unikorn.campus.booking.domain.BookingRepository;
+import com.unikorn.campus.booking.domain.CreditEvent;
 import com.unikorn.campus.booking.domain.SportBookingCommand;
 import com.unikorn.campus.booking.domain.UserCreditSnapshot;
 import com.unikorn.campus.booking.domain.UserBookingProfile;
