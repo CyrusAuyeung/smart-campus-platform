@@ -267,7 +267,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
               <div key={`${item.eventId}-${item.createdAt}-${index}`} className="booking-item">
                 <strong>{item.actionType}</strong>
                 <span>活动：{item.eventId}</span>
-                <span>缓存库存：{item.previousCacheStock ?? "无"} -> 数据库存量：{item.databaseStock}</span>
+                <span>缓存库存：{item.previousCacheStock ?? "无"} 到 数据库存量：{item.databaseStock}</span>
                 <span>执行者：{item.operator}</span>
                 <span>时间：{item.createdAt}</span>
               </div>
