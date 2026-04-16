@@ -42,8 +42,8 @@ app:
     sport-slot-minutes: 60
     payment-timeout-minutes: 15
   event:
-    stock-key-prefix: event:stock:
-    user-key-prefix: event:user:
+    stock-key-prefix: "event:stock:"
+    user-key-prefix: "event:user:"
     exchange: campus.event.exchange
     routing-key: campus.event.reserve
   payment:
