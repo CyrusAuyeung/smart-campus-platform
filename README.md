@@ -141,6 +141,8 @@ k6 run tests/performance/event-flash-sale.js \
 
 补充说明见 [tests/performance/README.md](tests/performance/README.md)。
 
+生产部署默认不暴露 Prometheus 端口，避免与现有服务器监控服务冲突。
+
 ## GitHub 仓库使用建议
 
 初始化 Git 仓库后，建议直接推送以下内容：

@@ -21,6 +21,7 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 - API 仅绑定到 `127.0.0.1:18081`
 - PostgreSQL / Redis 默认不暴露公网端口
 - RabbitMQ 管理端口仅绑定本机，使用 `127.0.0.1:15673`
+- Prometheus 不暴露宿主机端口，避免与服务器现有监控冲突
 
 ## 3. 配置 Nginx
 

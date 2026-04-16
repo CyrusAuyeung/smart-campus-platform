@@ -25,8 +25,7 @@ services:
 
   prometheus:
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:9090:9090"
+    ports: []
 
   grafana:
     restart: unless-stopped
