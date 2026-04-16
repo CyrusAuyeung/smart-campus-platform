@@ -262,13 +262,13 @@ export function BookingPlayground() {
     <section className="section" id="playground" aria-labelledby="playground-title">
       <div className="header">
         <div>
-          <h2 id="playground-title">预约联调面板</h2>
-          <p>直接调用后端预约接口，验证用户画像、规则校验、缓冲冲突和组合场地逻辑。</p>
+          <h2 id="playground-title">场地预约</h2>
+          <p>在一个页面里完成教室、讨论室和体育场地预约。</p>
         </div>
       </div>
       <div className="playground-grid">
         <article className="panel form-panel">
-          <h3>联调上下文</h3>
+          <h3>当前用户</h3>
           <label className="field">
             <span>用户</span>
             <select value={selectedUserId} onChange={(event) => setSelectedUserId(event.target.value)}>
@@ -395,7 +395,7 @@ export function BookingPlayground() {
 
       <div className="playground-grid secondary-grid">
         <article className="panel">
-          <h3>最近一次返回</h3>
+          <h3>最近一次操作</h3>
           {receipt ? (
             <div className="receipt-box">
               <strong>{receipt.orderNo}</strong>
@@ -416,12 +416,12 @@ export function BookingPlayground() {
               ) : null}
             </div>
           ) : (
-            <p>提交任一预约后，这里会展示后端回执。</p>
+            <p>完成一次预约后，这里会显示最新结果。</p>
           )}
         </article>
 
         <article className="panel">
-          <h3>当前用户预约记录</h3>
+          <h3>我的预约</h3>
           {bookings.length > 0 ? (
             <div className="booking-list">
               {bookings.map((item) => (
@@ -452,12 +452,12 @@ export function BookingPlayground() {
               ))}
             </div>
           ) : (
-            <p>当前用户还没有预约记录。</p>
+            <p>当前还没有预约记录。</p>
           )}
         </article>
 
         <article className="panel">
-          <h3>信用事件</h3>
+          <h3>信用记录</h3>
           {creditEvents.length > 0 ? (
             <div className="booking-list">
               {creditEvents.map((item) => (
@@ -470,7 +470,7 @@ export function BookingPlayground() {
               ))}
             </div>
           ) : (
-            <p>当前用户还没有信用事件记录。</p>
+            <p>当前还没有信用记录。</p>
           )}
         </article>
       </div>

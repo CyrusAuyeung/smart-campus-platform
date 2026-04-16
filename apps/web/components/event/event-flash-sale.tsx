@@ -161,7 +161,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
       <div className="header">
         <div>
           <h2 id="events-title">热门活动抢票</h2>
-          <p>演示 Redis 库存预热、原子扣减与 MQ 异步落单的第一版链路。</p>
+          <p>查看活动名额并完成抢票。</p>
         </div>
       </div>
       <div className="playground-grid secondary-grid">
@@ -200,7 +200,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
         </article>
 
         <article className="panel">
-          <h3>活动回执</h3>
+          <h3>抢票结果</h3>
           {receipt ? (
             <div className="receipt-box">
               <strong>{receipt.status}</strong>
@@ -209,11 +209,11 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
               <span>剩余库存：{receipt.remainingStock}</span>
             </div>
           ) : (
-            <p>发起一次抢票后，这里会展示排队回执。</p>
+            <p>发起抢票后，这里会显示当前结果。</p>
           )}
           {health ? (
             <div className="receipt-box">
-              <strong>活动健康</strong>
+              <strong>当前状态</strong>
               <span>待处理：{health.pendingOrders}</span>
               <span>已确认：{health.confirmedOrders}</span>
               <span>失败：{health.failedOrders}</span>
@@ -221,7 +221,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
           ) : null}
           {reconciliation.length > 0 ? (
             <div className="receipt-box">
-              <strong>库存对账</strong>
+              <strong>库存状态</strong>
               {reconciliation.map((item) => (
                 <div key={item.eventId} className="booking-item">
                   <span>{item.eventId}</span>
@@ -240,7 +240,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
       </div>
 
       <article className="panel section">
-        <h3>抢票审计</h3>
+        <h3>抢票记录</h3>
         {audits.length > 0 ? (
           <div className="booking-list">
             {audits.map((item) => (
@@ -255,12 +255,12 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
             ))}
           </div>
         ) : (
-          <p>当前还没有抢票审计记录。</p>
+          <p>当前还没有抢票记录。</p>
         )}
       </article>
 
       <article className="panel section">
-        <h3>修复历史</h3>
+        <h3>修复记录</h3>
         {repairs.length > 0 ? (
           <div className="booking-list">
             {repairs.map((item, index) => (
@@ -274,7 +274,7 @@ export function EventFlashSale({ users }: EventFlashSaleProps) {
             ))}
           </div>
         ) : (
-          <p>当前还没有修复历史。</p>
+          <p>当前还没有修复记录。</p>
         )}
       </article>
     </section>

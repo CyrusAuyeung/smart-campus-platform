@@ -1,5 +1,6 @@
 package com.unikorn.campus.event.domain;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 public record EventReserveCommand(
@@ -7,5 +8,5 @@ public record EventReserveCommand(
         String orderNo,
         UUID eventId,
         UUID userId,
-        String requestId) {
+        String requestId) implements Serializable {
 }

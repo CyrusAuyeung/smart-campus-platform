@@ -43,13 +43,13 @@ export function ReviewPanel() {
     <section className="section" id="review" aria-labelledby="review-title">
       <div className="header">
         <div>
-          <h2 id="review-title">人工复核队列</h2>
-          <p>展示支付确认与超时取消发生竞争后进入复核的记录。</p>
+          <h2 id="review-title">异常处理</h2>
+          <p>显示需要人工确认的异常订单与支付记录。</p>
         </div>
       </div>
       <article className="panel">
-        {loading ? <p>正在加载复核列表...</p> : null}
-        {!loading && cases.length === 0 ? <p>当前没有待处理的人工复核记录。</p> : null}
+        {loading ? <p>正在加载异常记录...</p> : null}
+        {!loading && cases.length === 0 ? <p>当前没有待处理异常。</p> : null}
         {cases.length > 0 ? (
           <div className="booking-list">
             {cases.map((item) => (

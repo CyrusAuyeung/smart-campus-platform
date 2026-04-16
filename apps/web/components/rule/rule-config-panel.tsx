@@ -43,13 +43,13 @@ export function RuleConfigPanel() {
     <section className="section" id="rules" aria-labelledby="rules-title">
       <div className="header">
         <div>
-          <h2 id="rules-title">规则配置</h2>
-          <p>展示当前数据库中的预约规则配置，便于答辩时直接说明“规则可配置”。</p>
+          <h2 id="rules-title">预约规则</h2>
+          <p>当前系统正在使用的预约限制与约束条件。</p>
         </div>
       </div>
       <article className="panel">
-        {loading ? <p>正在加载规则配置...</p> : null}
-        {!loading && rules.length === 0 ? <p>当前没有可用的规则配置。</p> : null}
+        {loading ? <p>正在加载规则...</p> : null}
+        {!loading && rules.length === 0 ? <p>当前没有可用规则。</p> : null}
         {rules.length > 0 ? (
           <div className="booking-list">
             {rules.map((rule) => (
