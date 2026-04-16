@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -69,7 +70,7 @@ class EventServiceTest {
 
         assertThat(receipt.status()).isEqualTo("QUEUED");
         assertThat(receipt.remainingStock()).isEqualTo(19);
-        verify(rabbitTemplate).convertAndSend(any(String.class), any(String.class), any());
+        verify(rabbitTemplate).convertAndSend(any(String.class), any(String.class), any(Object.class));
     }
 
     @Test
@@ -104,8 +105,9 @@ class EventServiceTest {
         UUID userId = UUID.randomUUID();
         EventReserveCommand command = new EventReserveCommand(UUID.randomUUID(), "EV-1", eventId, userId, "REQ-1");
         when(eventRepository.hasProcessedRequest("REQ-1")).thenReturn(false);
-        when(eventRepository.createPendingReservation(any(), any(), any(), any(), any()))
-                .thenThrow(new IllegalStateException("db failed"));
+        doThrow(new IllegalStateException("db failed"))
+            .when(eventRepository)
+            .createPendingReservation(any(), any(), any(), any(), any());
 
         assertThatThrownBy(() -> eventService.confirmReservation(command))
                 .isInstanceOf(IllegalStateException.class)
