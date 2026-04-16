@@ -74,7 +74,7 @@ public class JdbcBookingRepository implements BookingRepository {
 
     @Override
     public boolean areSportUnitsBelongToFacility(UUID facilityId, List<UUID> unitIds) {
-        Integer count = jdbcTemplate.queryForObject(
+        Integer count = jdbcTemplate.query(
                 """
                         SELECT COUNT(1)
                         FROM sport_unit
@@ -86,13 +86,13 @@ public class JdbcBookingRepository implements BookingRepository {
                     ps.setObject(1, facilityId);
                     ps.setArray(2, uuidArray(ps, unitIds));
                 },
-                Integer.class);
+                rs -> rs.next() ? rs.getInt(1) : 0);
         return count != null && count == unitIds.size();
     }
 
     @Override
     public boolean matchesExistingGroup(UUID facilityId, List<UUID> unitIds) {
-        Integer count = jdbcTemplate.queryForObject(
+        Integer count = jdbcTemplate.query(
                 """
                         SELECT COUNT(*)
                         FROM sport_unit_group g
@@ -108,7 +108,7 @@ public class JdbcBookingRepository implements BookingRepository {
                     ps.setArray(3, uuidArray(ps, unitIds));
                     ps.setInt(4, unitIds.size());
                 },
-                Integer.class);
+                                rs -> rs.next() ? rs.getInt(1) : 0);
         return count != null && count > 0;
     }
 
@@ -130,7 +130,7 @@ public class JdbcBookingRepository implements BookingRepository {
 
     @Override
     public boolean hasSportConflict(List<UUID> unitIds, LocalDate bookingDate, List<Integer> slotIndices) {
-        Integer count = jdbcTemplate.queryForObject(
+        Integer count = jdbcTemplate.query(
                 """
                         SELECT COUNT(1)
                         FROM sport_booking_occupancy
@@ -143,7 +143,7 @@ public class JdbcBookingRepository implements BookingRepository {
                     ps.setArray(2, uuidArray(ps, unitIds));
                     ps.setArray(3, intArray(ps, slotIndices));
                 },
-                Integer.class);
+                                rs -> rs.next() ? rs.getInt(1) : 0);
         return count != null && count > 0;
     }
 
