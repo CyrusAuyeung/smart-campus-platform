@@ -69,6 +69,19 @@ docker compose up --build
 - RabbitMQ 管理台: <http://localhost:15672>
 - Grafana: <http://localhost:3001>
 
+### 生产部署
+
+生产环境建议使用：
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+```
+
+部署说明与 Nginx 配置模板见：
+
+- [deploy/docs/deployment.md](deploy/docs/deployment.md)
+- [deploy/nginx/campus.blindot.org.conf](deploy/nginx/campus.blindot.org.conf)
+
 ### 方式二：本地分开运行
 
 前端：
