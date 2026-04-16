@@ -106,8 +106,7 @@ class EventServiceTest {
         EventReserveCommand command = new EventReserveCommand(UUID.randomUUID(), "EV-1", eventId, userId, "REQ-1");
         when(eventRepository.hasProcessedRequest("REQ-1")).thenReturn(false);
         doThrow(new IllegalStateException("db failed"))
-            .when(eventRepository)
-            .createPendingReservation(any(), any(), any(), any(), any());
+            .when(eventRepository).createPendingReservation(any(), any(), any(), any(), any());
 
         assertThatThrownBy(() -> eventService.confirmReservation(command))
                 .isInstanceOf(IllegalStateException.class)
