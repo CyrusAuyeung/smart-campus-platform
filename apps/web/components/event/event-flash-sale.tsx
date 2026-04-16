@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { EventHealthSnapshot, EventItem, EventReconciliationSnapshot, EventRepairAction, EventReservationAudit, EventReserveReceipt, UserItem } from "@/lib/types/booking";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8080/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 
 type EventFlashSaleProps = {
   users: UserItem[];

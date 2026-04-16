@@ -80,6 +80,13 @@ main {
   box-shadow: var(--shadow);
 }
 
+.product-hero {
+  background:
+    radial-gradient(circle at top left, rgba(11, 110, 79, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(207, 106, 50, 0.14), transparent 24%),
+    linear-gradient(140deg, rgba(255, 251, 245, 0.95), rgba(248, 240, 230, 0.94));
+}
+
 .hero h1,
 .hero h2,
 .hero h3,
