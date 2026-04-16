@@ -27,7 +27,7 @@ tests/
 ## 技术栈
 
 - 前端：Next.js 15、React 19、TypeScript
-- 后端：Spring Boot、PostgreSQL、Redis、RabbitMQ、Flyway
+- 后端：Spring Boot、Java 21、PostgreSQL、Redis、RabbitMQ、Flyway
 - 工程化：Docker Compose、GitHub Actions、Prometheus、Grafana、k6
 
 ## 核心能力
