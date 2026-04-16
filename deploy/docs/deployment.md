@@ -17,10 +17,10 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 说明：
 
-- Web 仅绑定到 `127.0.0.1:3000`
-- API 仅绑定到 `127.0.0.1:8080`
+- Web 仅绑定到 `127.0.0.1:3100`
+- API 仅绑定到 `127.0.0.1:18081`
 - PostgreSQL / Redis 默认不暴露公网端口
-- RabbitMQ 管理端口仅绑定本机
+- RabbitMQ 管理端口仅绑定本机，使用 `127.0.0.1:15673`
 
 ## 3. 配置 Nginx
 
@@ -44,6 +44,6 @@ sudo systemctl reload nginx
 
 ```bash
 k6 run tests/performance/event-flash-sale.js \
-  -e API_BASE=http://127.0.0.1:8080/api \
+  -e API_BASE=http://127.0.0.1:18081/api \
   -e EVENT_ID=eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee
 ```

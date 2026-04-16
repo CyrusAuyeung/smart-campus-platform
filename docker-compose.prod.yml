@@ -2,12 +2,12 @@ services:
   web:
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3100:3000"
 
   api:
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:18081:8080"
 
   db:
     restart: unless-stopped
@@ -20,8 +20,8 @@ services:
   mq:
     restart: unless-stopped
     ports:
-      - "127.0.0.1:15672:15672"
-      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15673:15672"
+      - "127.0.0.1:5673:5672"
 
   prometheus:
     restart: unless-stopped
@@ -31,4 +31,4 @@ services:
   grafana:
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3001:3000"
+      - "127.0.0.1:3101:3000"
