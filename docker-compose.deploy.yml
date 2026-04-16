@@ -1,0 +1,70 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3100:3000"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/campus_platform
+      DB_USERNAME: campus
+      DB_PASSWORD: campus
+      REDIS_HOST: redis
+      RABBITMQ_HOST: mq
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+    ports:
+      - "127.0.0.1:18081:8080"
+    depends_on:
+      - db
+      - redis
+      - mq
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: campus_platform
+      POSTGRES_USER: campus
+      POSTGRES_PASSWORD: campus
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  mq:
+    image: rabbitmq:3-management-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:15673:15672"
+      - "127.0.0.1:5673:5672"
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3101:3000"
+    depends_on:
+      - prometheus
+
+volumes:
+  postgres_data:

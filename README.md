@@ -74,7 +74,7 @@ docker compose up --build
 生产环境建议使用：
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.deploy.yml up -d --build
 ```
 
 部署说明与 Nginx 配置模板见：

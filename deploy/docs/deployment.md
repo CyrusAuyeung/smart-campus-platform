@@ -12,7 +12,7 @@ cd smart-campus-platform
 ## 2. 启动生产容器
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.deploy.yml up -d --build
 ```
 
 说明：
