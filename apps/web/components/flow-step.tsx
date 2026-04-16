@@ -2,7 +2,7 @@ type FlowStepProps = {
   step: string;
   title: string;
   description: string;
-  bullets: string[];
+  bullets: readonly string[];
 };
 
 export function FlowStep({ step, title, description, bullets }: FlowStepProps) {

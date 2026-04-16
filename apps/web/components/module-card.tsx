@@ -1,7 +1,7 @@
 type ModuleCardProps = {
   title: string;
   description: string;
-  highlights: string[];
+  highlights: readonly string[];
 };
 
 export function ModuleCard({ title, description, highlights }: ModuleCardProps) {
